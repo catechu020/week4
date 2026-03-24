@@ -112,7 +112,53 @@ function Message(props){
   )
 }
 
+function Button({text, color}){
+  return (
+    <button style={{backgroundColor: color, color: "white"}}>
+      {text}
+    </button>
+  )
+}
+
+function VideoCard({title, channel, views}){
+  return (
+    <div>
+      <h3>{title}</h3>
+      <p>{channel}</p>
+      <p>조회수: {views}</p>
+    </div>
+  );
+}
+
+function VideoList({videos}){
+  return (
+    <div>
+      {videos.map((video, index) => (
+        <VideoCard 
+          key={index}
+          title={video.title}
+          channel={video.channel}
+          views={video.views}
+        />
+
+      ))}
+    </div>
+  )
+}
+
 function App(){
+  const video = [
+    {
+      title: "리액트 기초 강의",
+      channel: "코딩채널",
+      views: "10만"
+    },
+    {
+      title: "자바스크립트 완벽 정리",
+      channel: "개발자TV",
+      views: "25만"
+    }
+  ];
   return (
     <div>
       <h1>4주차 수업 과제 1</h1>
@@ -127,6 +173,18 @@ function App(){
       <Message name="영희" message="생일축하해!"/>
       <Message name="철수" message="좋은하루보내!"/>
       <Message name="영덕" message="대게"/>
+      <hr />
+
+      <h1>4주차 수업 과제3</h1>
+      <h2>실습5</h2>
+       <Button text="로그인" color="blue"/><br/>
+       <Button text="회원가입" color="green"/><br/>
+       <Button text="삭제" color="red"/>
+       <hr />
+      
+      <h1>4주차 실습 과제4</h1>
+      <h1>📺 추천 영상</h1>
+      <VideoList videos={video} />
     </div>
   )
 }
